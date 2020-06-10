@@ -22,7 +22,7 @@ console.log(getUsersWithGender(users, 'male'));
 // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
 
 //Задание 4 Получить массив только неактивных пользователей (поле isActive).
-const getInactiveUsers = users => users.filter(user => user.isActive);
+const getInactiveUsers = users => users.filter(user => !user.isActive);
 console.log(getInactiveUsers(users));
 // [объект Moore Hensley, объект Ross Vazquez, объект Blackburn Dotson]
 
@@ -62,9 +62,10 @@ console.log(getNamesSortedByFriendsCount(users));
 //Задание 10 Получить массив всех умений всех пользователей (поле skills), при этом не должно быть повторяющихся умений и они должны быть отсортированы в алфавитном порядке.
 const getSortedUniqueSkills = users =>
   users
-    .map(user => user.skills)
-    .reduce((allSkills, user) => [...allSkills, ...user], [])
+
+    .reduce((allSkills, user) => [...allSkills, ...user.skills], [])
     .filter((elem, index, array) => array.indexOf(elem) === index)
     .sort((b, a) => b.localeCompare(a, 'en'));
+
 console.log(getSortedUniqueSkills(users));
 // [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
